@@ -1,0 +1,115 @@
+.header-page {
+  &__contacts {
+    background: #e4e4e4;
+    width: 100%;
+  }
+  &__wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+    @include flex();
+  }
+  &__telephone {
+    @include flex-center();
+    max-width: 396px;
+    box-sizing: border-box;
+  }
+  &__telephone > a{
+    text-decoration: none;
+    @include font(18px, 400);
+    @include inline-block();
+    min-width: 150px;
+    margin-right: 5px;
+  }
+  &__telephone > span {
+    @include font(12px, 400);
+  }
+  &__socials-items {
+    @include flex-center();
+  }
+  &__socials-item {
+    position: relative;
+  }
+  &__socials-item > a {
+    text-decoration: none;
+    @include inline-block();
+    @include font(14px, 400);
+    padding: 12px 0 12px 33px;
+  }
+  &__socials-item--icon_star > a::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 31px;
+    background: url(/src/img/icon_star.png) 50% 50% no-repeat;
+    left: 0;
+    top: 5px;
+  }
+  &__socials-item--icon_youtube > a{
+    padding: 12px 0 12px 58px;
+  }
+  &__socials-item--icon_youtube > a::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 54px;
+    height: 22px;
+    background: url(/src/img/icon_youtube-full.png) 50% 50% no-repeat;
+    left: 0;
+    top: 9px;
+  }
+  &__socials-item--icon_youtubeL > a{
+    padding: 12px 0 12px 34px;
+  }
+  &__socials-item--icon_youtubeL > a::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 22px;
+    background: url(/src/img/icon_youtube.png) 50% 50% no-repeat;
+    left: 0;
+    top: 9px;
+  }
+  &__socials-item + &__socials-item {
+    margin-left: 38px;
+  }
+  &__logo {
+    @include flex-center();
+    padding: 15px 0;
+    margin-right: 113px;
+    text-decoration: none;
+  }
+  &__logo img {
+    margin-right: 6px;
+  }
+  &__logo-text {
+    color: $logo-color;
+    font-size: $logo-size;
+    font-family: $logo-family;
+  }
+  &__search {
+    @include flex-center();
+    position: relative;
+  }
+  &__search-field {
+    width: 226px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    @include font(14px, 400);
+    padding: 0 5px 5px 0;
+  }
+  &__search-field::-webkit-input-placeholder {
+    color: #000;
+  }
+  &__search-field::-moz-placeholder {
+    color: #000;
+  }
+  &__search-field:-ms-input-placeholder {
+    color: #000;
+  }
+  &__search-field:-moz-placeholder {
+    color: #000;
+  }
+}

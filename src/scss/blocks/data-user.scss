@@ -1,0 +1,40 @@
+.data-user {
+  @include flex-center();
+  margin-left: auto;
+  &__user-info {
+    @include inline-block();
+    @include font(14px, 300, normal, #000, 'HelveticaNeueCyr');
+    position: relative;
+    padding: 5px 0 5px 37px;
+    margin-right: 59px;
+    cursor: pointer;
+  }
+  &__user-info::before {
+    content: '';
+    display: block;
+    width: 27px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(/src/img/icon_user.png) no-repeat;
+  }
+  &__cart-info {
+    @include inline-block();
+    @include font(12px, 400);
+    position: relative;
+    padding-left: 32px;
+  }
+  &__cart-info::before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 26px;
+    position: absolute;
+    left: 0;
+    background: url(/src/img/icon_cart.png) no-repeat;
+  }
+  &__cart-info > b {
+    @include font(12px, 600);
+  }
+}

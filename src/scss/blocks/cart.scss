@@ -1,0 +1,13 @@
+.cart {
+  min-height: 300px;
+  &__title {
+    height: 0.5em;
+    border-bottom: 2px solid #d9d9d9;
+    text-align: center;
+  }
+  &__title > span {
+    @include font(22px);
+    background-color: #fff;
+    padding: 0 17px;
+  }
+}

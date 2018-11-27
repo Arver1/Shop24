@@ -1,0 +1,40 @@
+.promo {
+  &__title {
+    max-width: 1170px;
+    margin: 0 auto;
+    height: 0.5em;
+    border-bottom: 2px solid #d9d9d9;
+    text-align: center;
+    margin-bottom: 29px;
+  }
+  &__title > span {
+    @include font(22px);
+    background-color: #fff;
+    padding: 0 17px;
+  }
+  &__items {
+    @include flex();
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+  &__item {
+    width: 277px;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: all 1s;
+  }
+  &__item:hover {
+    transform: scale(1.04);
+  }
+  &__item > a {
+    text-decoration: none;
+  }
+  &__description {
+    @include font(16px, 400);
+    text-align: center;
+    margin-bottom: 11px;
+  }
+  &__price {
+    @include font();
+  }
+}

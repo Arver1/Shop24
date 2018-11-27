@@ -1,0 +1,34 @@
+[
+  {
+    "id": "56c782f17b4e0ba78c7ad717",
+    "description": "Платье-миди с расклешенной юбкой",
+    "code": "82039-11",
+    "size": 44,
+    "color": "blue",
+    "price": 2450
+  },
+  {
+    "id": "56c782f1978fdf9a0100df52",
+    "description": "Туфли женские украшенные кружевными вставками",
+    "code": "13524-01",
+    "size": 38,
+    "color": "black",
+    "price": 2450
+  },
+  {
+    "id": "56c782f1e17f4f9311dfaa2c",
+    "description": "Платье-миди",
+    "code": "75039",
+    "size": 44,
+    "color": "white",
+    "price": 2450
+  },
+  {
+    "id": "56c782f197fe2bad471b3740",
+    "description": "Платье-миди",
+    "code": "75039",
+    "size": 46,
+    "color": "white",
+    "price": 2450
+  }
+]
