@@ -1,21 +1,16 @@
-import React, {PureComponent}from 'react';
+import React, { PureComponent }from 'react';
 
+const test =  ['test', 'test', 'test', 'test'];
 const menuList = {
   'Одежда и аксессуары': ['Женская одежда', 'Мужская одежда', 'Аксессуары'],
-  'Обувь': ['test', 'test', 'test', 'test'],
-  'Украшения': ['test', 'test', 'test', 'test'],
-  'Красота и здоровье': ['test', 'test', 'test', 'test'],
-  'Товары для дома': ['test', 'test', 'test', 'test'],
-  'Товары для кухни': ['test', 'test', 'test', 'test'],
+  'Обувь': test,
+  'Украшения': test,
+  'Красота и здоровье': test,
+  'Товары для дома': test,
+  'Товары для кухни': test
 };
 
-class Menu extends PureComponent{
-  constructor(props){
-    super(props);
-    this.state = {
-      active: ''
-    }
-  }
+class Menu extends PureComponent {
 
   getSubMenu = list => {
     if(!Array.isArray(list)) return;
@@ -23,7 +18,7 @@ class Menu extends PureComponent{
       <div className="main-page__sub-wrapper">
         <ul className="main-page__sub-items">
           {list.map((item, index)=>
-            <li key={index} className="main-page__sub-item">{item}</li>)}
+            <li key={ index } className="main-page__sub-item">{ item }</li>)}
         </ul>
       </div>
     )
@@ -32,8 +27,8 @@ class Menu extends PureComponent{
   getMenu = list => {
     if(!list) return;
     return Object.entries(list).map((item, index)=>
-      <li key={index} className="main-page__item">
-        {item[0]}
+      <li key={ index } className="main-page__item">
+        { item[0] }
         {this.getSubMenu(item[1])}
       </li>
     );
@@ -42,7 +37,7 @@ class Menu extends PureComponent{
   render(){
     return(
       <section className="main-page__wrapper">
-        <ul className="main-page__items">{this.getMenu(menuList)}</ul>
+        <ul className="main-page__items">{ this.getMenu(menuList) }</ul>
       </section>
     )
   }

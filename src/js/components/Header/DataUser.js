@@ -1,11 +1,12 @@
 import React from 'react';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 function DataUser(props){
   const {goodsId} = props;
   function getCartInfo(list){
-    const count = Object.values(list).reduce((acc, good)=> acc+good, 0);
-    const digit = count.toString().length - 1
+    const count = Object.values(list).reduce((acc, good) => acc + good, 0);
+    const digit = count.toString().length - 1;
     const arrTemp = [11,12,13, 14];
     const num = digit === 0 || ~arrTemp.indexOf(count) ? count : count % Math.pow(10, digit);
     switch(num){
@@ -24,6 +25,10 @@ function DataUser(props){
     </section>
   )
 }
+
+DataUser.propTypes = {
+  goodsId: PropTypes.object
+};
 
 export default connect(state => {
   return {

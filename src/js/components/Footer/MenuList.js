@@ -19,19 +19,19 @@ function MenuList(){
     if(!Array.isArray(list)) return null;
     return (
       <ul className="footer-page__items">
-        {list.map((item, index)=>
-          <li className="footer-page__item" key={index}>
-            <a href="#">{item}</a>
+        {list.map((item, index) =>
+          <li className="footer-page__item" key={ index }>
+            <a href="#">{ item }</a>
           </li>)}
       </ul>
     )
   }
   return (
     <ul className="footer-page__list-items">
-      <li className="footer-page__list-item"><span>Каталог товаров</span>{getBody(menuGoods)}</li>
-      <li className="footer-page__list-item"><span>Заказ</span>{getBody(menuOrders)}</li>
-      <li className="footer-page__list-item"><span>Shop24</span>{getBody(menuShop)}</li>
-      <li className="footer-page__list-item"><span>Информация</span>{getBody(menuInfo)}</li>
+      <li className="footer-page__list-item"><span>Каталог товаров</span>{ getBody(menuGoods) }</li>
+      <li className="footer-page__list-item"><span>Заказ</span>{ getBody(menuOrders) }</li>
+      <li className="footer-page__list-item"><span>Shop24</span>{ getBody(menuShop) }</li>
+      <li className="footer-page__list-item"><span>Информация</span>{ getBody(menuInfo) }</li>
     </ul>
   )
 }

@@ -1,5 +1,6 @@
 import goods from '../goods';
 import {INC_GOOD, DEC_GOOD, DELETE_GOOD} from "../constants";
+
 const initialState = goods.reduce((acc, good) => {
   acc[good.id] = 1;
   return acc;

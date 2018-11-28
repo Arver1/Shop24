@@ -4,7 +4,8 @@
   padding-top: 25px;
   &__wrapper {
     margin-left: auto;
-    width: 597px;
+    flex-basis: 250px;
+    flex-grow: 1;
     @include flex();
   }
   &__title {
@@ -49,6 +50,7 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     width: 270px;
+    margin-right: 24px;
   }
   &__description-item {
     margin-bottom: 18px;
@@ -119,4 +121,65 @@
     @include font();
     align-self: flex-start;
   }
+  &__msg-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 60px;
+  }
+  &__msg {
+    @include font();
+    position: relative;
+    padding: 5px 0 69px 30px;
+
+  }
+  &__msg::before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 26px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(/src/img/icon_cart.png) no-repeat;
+  }
+  &__promo {
+    border-top: 2px solid #d9d9d9;
+    padding-top: 28px;
+  }
+  &__total-item {
+    @include font(16px, 400);
+  }
+  &__total-item--color {
+    color: #ff6c00;
+  }
+  &__empty-enter {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+  &__empty-enter-active {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: all 1000ms ease-in;
+  }
+  &__empty-exit {
+    opacity: 1;
+  }
+  &__empty-exit-active {
+    opacity: 0;
+    transition: opacity 5000ms ease-in;
+  }
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 700ms ease-in;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 700ms ease-in;
 }

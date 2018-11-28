@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import goods from '../../goods';
-import {connect} from 'react-redux';
 import { incGood, decGood, deleteGood } from "../../AC";
 
-function CartItem(props){
-  const { goodId, amount } = props;
-  const good = goods.find(it => it.id === goodId);
+class CartItem extends PureComponent {
+  static propTypes = {
+    goodId: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+  };
 
-  function increment(){
-    const {incGood} = props;
+  increment = () => {
+    const {incGood, goodId} = this.props;
     incGood(goodId);
-  }
+  };
 
-  function decrement(){
-    const {decGood} = props;
+  decrement = () => {
+    const {decGood, goodId} = this.props;
     decGood(goodId);
-  }
+  };
 
-  function delGood(){
-    const {deleteGood} = props;
+  delGood = () => {
+    const {deleteGood, goodId} = this.props;
     deleteGood(goodId);
-  }
+  };
 
-  function getDescription(good){
+  getDescription = good => {
     return ['description', 'code', 'size', 'color'].map((it, index) => {
       let temp = null;
       switch(it) {
@@ -37,15 +40,16 @@ function CartItem(props){
           break;
       }
       return (
-        <li key={index}
-            className={`cart__description-item cart__description-item--${it}`}>
-          {temp}{good[it]}
+        <li key={ index }
+            className={`cart__description-item cart__description-item--${ it }`}>
+          { temp }{ good[it] }
           </li>)
     })
-  }
+  };
 
-  function getPrice(good){
+  getPrice = good => {
     if(!good.price) return null;
+    const { amount } = this.props;
     const total = (good.price * amount).toString();
     const digit =  total.length - 1;
     if(digit < 3) return total;
@@ -53,24 +57,32 @@ function CartItem(props){
       if(!(index % 3)) return acc + it + ' ';
       return acc + it;
     }, '');
-  }
-  
-  return (
+  };
+
+  render() {
+    const { goodId, amount } = this.props;
+    const good = goods.find(it => it.id === goodId);
+
+    return (
     <li className="cart__item">
-      <img className="cart__good-img" src={good.url} />
-      <ul className="cart__description-items">{good ? getDescription(good) : null}</ul>
+      <img className="cart__good-img" src={ good.url } />
+      <ul className="cart__description-items">{ good ? this.getDescription(good) : null }</ul>
       <div className="cart__wrapper">
         <section className="cart__amount">
-          <button className="cart__btn" onClick={decrement}>-</button>
-          <span>{amount}</span>
-          <button className="cart__btn" onClick={increment}>+</button>
+          <button className="cart__btn" onClick={ this.decrement }>-</button>
+          <span>{ amount }</span>
+          <button className="cart__btn" onClick={ this.increment }>+</button>
         </section>
-        <span className="cart__price">{getPrice(good)} руб.</span>
-        <button className="cart__btn cart__btn--del" onClick={delGood}>Удалить</button>
+        <span className="cart__price">{ this.getPrice(good) } руб.</span>
+        <button className="cart__btn cart__btn--del" onClick={ this.delGood }>Удалить</button>
       </div>
     </li>
-  )
+  )}
+  componentWillUnmount(){
+    //can add a popup
+  }
 }
+
 
 export default connect(null, {
   incGood,
