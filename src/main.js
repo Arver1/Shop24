@@ -26144,6 +26144,72 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./AC/index.js":
+/*!*********************!*\
+  !*** ./AC/index.js ***!
+  \*********************/
+/*! exports provided: incGood, decGood, deleteGood */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "incGood", function() { return incGood; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decGood", function() { return decGood; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteGood", function() { return deleteGood; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./constants.js");
+(function () {
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+
+function incGood(id) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["INC_GOOD"],
+    payload: {
+      id: id
+    }
+  };
+}
+function decGood(id) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["DEC_GOOD"],
+    payload: {
+      id: id
+    }
+  };
+}
+function deleteGood(id) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["DELETE_GOOD"],
+    payload: {
+      id: id
+    }
+  };
+}
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(incGood, "incGood", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\AC\\index.js");
+  reactHotLoader.register(decGood, "decGood", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\AC\\index.js");
+  reactHotLoader.register(deleteGood, "deleteGood", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\AC\\index.js");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/harmony-module.js */ "../../node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
 /***/ "./components/App.js":
 /*!***************************!*\
   !*** ./components/App.js ***!
@@ -26617,11 +26683,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function DataUser(props) {
-  var goods = props.goods;
+  var goodsId = props.goodsId;
 
-  function getCartInfo(count) {
+  function getCartInfo(list) {
+    var count = Object.values(list).reduce(function (acc, good) {
+      return acc + good;
+    }, 0);
     var digit = count.toString().length - 1;
-    var num = digit === 0 ? count : count % Math.pow(10, digit);
+    var arrTemp = [11, 12, 13, 14];
+    var num = digit === 0 || ~arrTemp.indexOf(count) ? count : count % Math.pow(10, digit);
 
     switch (num) {
       case 1:
@@ -26645,12 +26715,12 @@ function DataUser(props) {
     className: "data-user__user-info"
   }, "\u0410\u043D\u0430\u0441\u0442\u0430\u0441\u0438\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "data-user__cart-info"
-  }, "\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0435", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, getCartInfo(goods.length))));
+  }, "\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0435", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, getCartInfo(goodsId))));
 }
 
 var _default = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (state) {
   return {
-    goods: state
+    goodsId: state
   };
 })(DataUser);
 
@@ -26939,28 +27009,55 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var caption = ['Товар', 'Описание', 'Количество', 'Цена', 'Удалить'];
 
 function Cart(props) {
   function getBody() {
-    var goods = props.goods;
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, goods.map(function (good, index) {
+    var goodsId = props.goodsId;
+    return Object.entries(goodsId).map(function (id, index) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CartItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
         key: index,
-        good: good
+        goodId: id[0],
+        amount: id[1]
       });
-    }));
+    });
+  }
+
+  function getCaption(list) {
+    return list.map(function (item, index) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        key: index,
+        className: "cart__caption"
+      }, item);
+    });
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "cart"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     className: "cart__title"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430")));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0412\u0430\u0448\u0430 \u043A\u043E\u0440\u0437\u0438\u043D\u0430")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "cart__items"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "cart__item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "cart__caption cart__caption--good"
+  }, "\u0422\u043E\u0432\u0430\u0440"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "cart__caption cart__caption--description"
+  }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart__wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "cart__caption cart__caption--amount"
+  }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "cart__caption cart__caption--price"
+  }, "\u0426\u0435\u043D\u0430"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "cart__caption cart__caption--price"
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C"))), getBody()));
 }
 
 var _default = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (state) {
   return {
-    goods: state
+    goodsId: state
   };
 })(Cart);
 
@@ -26976,6 +27073,7 @@ var _default = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(funct
     return;
   }
 
+  reactHotLoader.register(caption, "caption", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\Cart.js");
   reactHotLoader.register(Cart, "Cart", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\Cart.js");
   reactHotLoader.register(_default, "default", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\Cart.js");
   leaveModule(module);
@@ -26997,6 +27095,10 @@ var _default = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(funct
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _goods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../goods */ "./goods.json");
+var _goods__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../goods */ "./goods.json", 1);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "../../node_modules/react-redux/es/index.js");
+/* harmony import */ var _AC__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../AC */ "./AC/index.js");
 (function () {
   var enterModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").enterModule;
 
@@ -27005,14 +27107,98 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 function CartItem(props) {
-  var good = props.good;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://via.placeholder.com/178x178"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, good.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "-"));
+  var goodId = props.goodId,
+      amount = props.amount;
+  var good = _goods__WEBPACK_IMPORTED_MODULE_1__.find(function (it) {
+    return it.id === goodId;
+  });
+
+  function increment() {
+    var incGood = props.incGood;
+    incGood(goodId);
+  }
+
+  function decrement() {
+    var decGood = props.decGood;
+    decGood(goodId);
+  }
+
+  function delGood() {
+    var deleteGood = props.deleteGood;
+    deleteGood(goodId);
+  }
+
+  function getDescription(good) {
+    return ['description', 'code', 'size', 'color'].map(function (it, index) {
+      var temp = null;
+
+      switch (it) {
+        case 'code':
+          temp = 'Код: ';
+          break;
+
+        case 'size':
+          temp = 'Размер: ';
+          break;
+
+        case 'color':
+          temp = 'Цвет: ';
+          break;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: index,
+        className: "cart__description-item cart__description-item--".concat(it)
+      }, temp, good[it]);
+    });
+  }
+
+  function getPrice(good) {
+    if (!good.price) return null;
+    var total = (good.price * amount).toString();
+    var digit = total.length - 1;
+    if (digit < 3) return total;
+    return total.split('').reverse().reduceRight(function (acc, it, index) {
+      if (!(index % 3)) return acc + it + ' ';
+      return acc + it;
+    }, '');
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "cart__item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "cart__good-img",
+    src: good.url
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "cart__description-items"
+  }, good ? getDescription(good) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart__wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "cart__amount"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "cart__btn",
+    onClick: decrement
+  }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, amount), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "cart__btn",
+    onClick: increment
+  }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "cart__price"
+  }, getPrice(good), " \u0440\u0443\u0431."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "cart__btn cart__btn--del",
+    onClick: delGood
+  }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")));
 }
 
-var _default = CartItem;
+var _default = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, {
+  incGood: _AC__WEBPACK_IMPORTED_MODULE_3__["incGood"],
+  decGood: _AC__WEBPACK_IMPORTED_MODULE_3__["decGood"],
+  deleteGood: _AC__WEBPACK_IMPORTED_MODULE_3__["deleteGood"]
+})(CartItem);
+
 /* harmony default export */ __webpack_exports__["default"] = (_default);
 ;
 
@@ -27027,6 +27213,140 @@ var _default = CartItem;
 
   reactHotLoader.register(CartItem, "CartItem", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\CartItem.js");
   reactHotLoader.register(_default, "default", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\CartItem.js");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/harmony-module.js */ "../../node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./components/Main/Menu.js":
+/*!*********************************!*\
+  !*** ./components/Main/Menu.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+(function () {
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var menuList = {
+  'Одежда и аксессуары': ['Женская одежда', 'Мужская одежда', 'Аксессуары'],
+  'Обувь': ['test', 'test', 'test', 'test'],
+  'Украшения': ['test', 'test', 'test', 'test'],
+  'Красота и здоровье': ['test', 'test', 'test', 'test'],
+  'Товары для дома': ['test', 'test', 'test', 'test'],
+  'Товары для кухни': ['test', 'test', 'test', 'test']
+};
+
+var Menu =
+/*#__PURE__*/
+function (_PureComponent) {
+  _inherits(Menu, _PureComponent);
+
+  function Menu(props) {
+    var _this;
+
+    _classCallCheck(this, Menu);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Menu).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getSubMenu", function (list) {
+      if (!Array.isArray(list)) return;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-page__sub-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "main-page__sub-items"
+      }, list.map(function (item, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: index,
+          className: "main-page__sub-item"
+        }, item);
+      })));
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getMenu", function (list) {
+      if (!list) return;
+      return Object.entries(list).map(function (item, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: index,
+          className: "main-page__item"
+        }, item[0], _this.getSubMenu(item[1]));
+      });
+    });
+
+    _this.state = {
+      active: ''
+    };
+    return _this;
+  }
+
+  _createClass(Menu, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "main-page__wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "main-page__items"
+      }, this.getMenu(menuList)));
+    }
+  }, {
+    key: "__reactstandin__regenerateByEval",
+    // @ts-ignore
+    value: function __reactstandin__regenerateByEval(key, code) {
+      // @ts-ignore
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Menu;
+}(react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"]);
+
+var _default = Menu;
+/* harmony default export */ __webpack_exports__["default"] = (_default);
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(menuList, "menuList", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\Menu.js");
+  reactHotLoader.register(Menu, "Menu", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\Menu.js");
+  reactHotLoader.register(_default, "default", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\components\\Main\\Menu.js");
   leaveModule(module);
 })();
 
@@ -27140,6 +27460,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Cart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cart */ "./components/Main/Cart.js");
 /* harmony import */ var _Promo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Promo */ "./components/Main/Promo.js");
+/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Menu */ "./components/Main/Menu.js");
 (function () {
   var enterModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").enterModule;
 
@@ -27150,12 +27471,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function Main() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "main-page"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "main-page__wrapper"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Promo__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Promo__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 }
 
 var _default = Main;
@@ -27235,6 +27555,49 @@ var _default = Root;
 
 /***/ }),
 
+/***/ "./constants.js":
+/*!**********************!*\
+  !*** ./constants.js ***!
+  \**********************/
+/*! exports provided: INC_GOOD, DEC_GOOD, DELETE_GOOD */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INC_GOOD", function() { return INC_GOOD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEC_GOOD", function() { return DEC_GOOD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_GOOD", function() { return DELETE_GOOD; });
+(function () {
+  var enterModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var INC_GOOD = 'INC_GOOD';
+var DEC_GOOD = 'DEC_GOOD';
+var DELETE_GOOD = 'DELETE_GOOD';
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").default;
+
+  var leaveModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(INC_GOOD, "INC_GOOD", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\constants.js");
+  reactHotLoader.register(DEC_GOOD, "DEC_GOOD", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\constants.js");
+  reactHotLoader.register(DELETE_GOOD, "DELETE_GOOD", "B:\\WORK\\\u0422\u0415\u0421\u0422\u041E\u0412\u042B\u0415\\SHOP24\\src\\js\\constants.js");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "../../node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
 /***/ "./goods.json":
 /*!********************!*\
   !*** ./goods.json ***!
@@ -27242,7 +27605,7 @@ var _default = Root;
 /*! exports provided: 0, 1, 2, 3, default */
 /***/ (function(module) {
 
-module.exports = [{"id":"56c782f17b4e0ba78c7ad717","description":"Платье-миди с расклешенной юбкой","code":"82039-11","size":44,"color":"blue","price":2450},{"id":"56c782f1978fdf9a0100df52","description":"Туфли женские украшенные кружевными вставками","code":"13524-01","size":38,"color":"black","price":2450},{"id":"56c782f1e17f4f9311dfaa2c","description":"Платье-миди","code":"75039","size":44,"color":"white","price":2450},{"id":"56c782f197fe2bad471b3740","description":"Платье-миди","code":"75039","size":46,"color":"white","price":2450}];
+module.exports = [{"id":"56c782f17b4e0ba78c7ad717","url":"/src/img/good_1@1x.png","description":"Платье-миди с расклешенной юбкой","code":"82039-11","size":44,"color":"синий","price":2450},{"id":"56c782f1978fdf9a0100df52","url":"/src/img/good_2@1x.png","description":"Туфли женские украшенные кружевными вставками","code":"13524-01","size":38,"color":"черный","price":2450},{"id":"56c782f1e17f4f9311dfaa2c","url":"/src/img/good_3@1x.png","description":"Платье-миди","code":"75039","size":44,"color":"белый","price":2450},{"id":"56c782f197fe2bad471b3740","url":"/src/img/good_3@1x.png","description":"Платье-миди","code":"75039","size":46,"color":"white","price":2450}];
 
 /***/ }),
 
@@ -27278,22 +27641,61 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])(react__WEBPACK_IMPORTED
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _goods__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../goods */ "./goods.json");
 var _goods__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../goods */ "./goods.json", 1);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./constants.js");
 (function () {
   var enterModule = __webpack_require__(/*! react-hot-loader */ "../../node_modules/react-hot-loader/index.js").enterModule;
 
   enterModule && enterModule(module);
 })();
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 var initialState = _goods__WEBPACK_IMPORTED_MODULE_0__.reduce(function (acc, good) {
   acc[good.id] = 1;
   return acc;
-}, []);
+}, {});
 
 var _default = function _default() {
-  var basketState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var cartState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  return basketState;
+  var type = action.type,
+      payload = action.payload;
+
+  var newState = _objectSpread({}, cartState);
+
+  switch (type) {
+    case _constants__WEBPACK_IMPORTED_MODULE_1__["INC_GOOD"]:
+      if (cartState.hasOwnProperty(payload.id)) {
+        newState[payload.id]++;
+        return newState;
+      }
+
+      newState[payload.id] = 1;
+      return newState;
+
+    case _constants__WEBPACK_IMPORTED_MODULE_1__["DEC_GOOD"]:
+      if (cartState.hasOwnProperty(payload.id)) {
+        if (newState[payload.id] === 1) {
+          delete newState[payload.id];
+          return newState;
+        }
+
+        newState[payload.id]--;
+        return newState;
+      }
+
+      return newState;
+
+    case _constants__WEBPACK_IMPORTED_MODULE_1__["DELETE_GOOD"]:
+      delete newState[payload.id];
+      return newState;
+  }
+
+  return cartState;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (_default);

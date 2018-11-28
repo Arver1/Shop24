@@ -1,13 +1,122 @@
 .cart {
-  min-height: 300px;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding-top: 25px;
+  &__wrapper {
+    margin-left: auto;
+    width: 597px;
+    @include flex();
+  }
   &__title {
     height: 0.5em;
     border-bottom: 2px solid #d9d9d9;
     text-align: center;
+    margin-bottom: 36px;
   }
   &__title > span {
     @include font(22px);
     background-color: #fff;
     padding: 0 17px;
+  }
+  &__items {
+    padding-top: 24px;
+  }
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  &__caption {
+    @include font(18px, 400);
+    padding-bottom: 39px;
+    @include inline-block();
+  }
+  &__caption--good {
+    width: 178px;
+    margin-right: 20px;
+  }
+  &__caption--description {
+    width: 270px;
+  }
+  &__good-img {
+    @include inline-block();
+    width: 178px;
+    margin-right: 20px;
+  }
+  &__description-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 270px;
+  }
+  &__description-item {
+    margin-bottom: 18px;
+  }
+  &__description-item--description,
+  &__description-item--size,
+  &__description-item--color {
+    @include font();
+  }
+  &__description-item--size {
+    margin-bottom: 0;
+  }
+  &__description-item--code {
+    @include font(14px, 400, normal, #808080);
+  }
+  &__btn {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    @include font(20px, 300, normal, #8d8d8d, $btn-cart-family);
+    cursor: pointer;
+  }
+  &__btn:hover,
+  &__btn:active {
+    color: #ff6c00;
+  }
+  &__btn--del {
+    align-self: flex-start;
+    margin-right: 24px;
+    margin-top: 4px;
+    font-size: 0;
+    position: relative;
+    width: 16px;
+    height: 16px;
+  }
+  &__btn--del::before,
+  &__btn--del::after {
+    content: '';
+    display: block;
+    background-color: #000;
+    position: absolute;
+    width: 16px;
+    height: 1px;
+    left: 0;
+  }
+  &__btn--del:hover::before,
+  &__btn--del:hover::after {
+    background-color: #ff6c00;
+  }
+  &__btn--del::before {
+    transform: rotate(45deg) rotateZ(0);
+  }
+  &__btn--del::after {
+    transform: rotate(-45deg) rotateZ(0);
+  }
+  &__amount > span {
+    align-self: flex-end;
+    @include font(18px, 300, normal, #000, $btn-cart-family);
+  }
+  &__amount {
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: flex-start;
+  }
+  &__price {
+    padding-top: 4px;
+    @include font();
+    align-self: flex-start;
   }
 }

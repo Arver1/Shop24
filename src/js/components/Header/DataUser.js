@@ -2,10 +2,12 @@ import React from 'react';
 import {connect} from "react-redux";
 
 function DataUser(props){
-  const {goods} = props;
-  function getCartInfo(count){
-    const digit = count.toString().length - 1;
-    const num = digit === 0 ? count : count % Math.pow(10, digit);
+  const {goodsId} = props;
+  function getCartInfo(list){
+    const count = Object.values(list).reduce((acc, good)=> acc+good, 0);
+    const digit = count.toString().length - 1
+    const arrTemp = [11,12,13, 14];
+    const num = digit === 0 || ~arrTemp.indexOf(count) ? count : count % Math.pow(10, digit);
     switch(num){
       case 1: return `${count} товар`;
       case 2:
@@ -18,13 +20,13 @@ function DataUser(props){
     <section className="data-user">
       <h2 className="visually-hidden">Данные пользователя</h2>
       <span className="data-user__user-info">Анастасия</span>
-      <span className="data-user__cart-info">В корзине<br/> <b>{getCartInfo(goods.length)}</b></span>
+      <span className="data-user__cart-info">В корзине<br/> <b>{getCartInfo(goodsId)}</b></span>
     </section>
   )
 }
 
 export default connect(state => {
   return {
-    goods: state
+    goodsId: state
   }
 })(DataUser)

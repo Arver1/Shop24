@@ -103,7 +103,7 @@ gulp.task('mincss', () =>
 gulp.task('webpack', () =>
   gulp.src('./src/js/index.js')
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest('./src/js'))
+    .pipe(gulp.dest('./src'))
 );
 
 gulp.task('fonts', function() {
@@ -112,7 +112,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('js', () =>
-  gulp.src('src/js/main.js', {since: gulp.lastRun('js')})
+  gulp.src('src/main.js', {since: gulp.lastRun('js')})
     .pipe(gulpNewer('build/src/js'))
     .pipe(gulp.dest('build/src/js'))
 );

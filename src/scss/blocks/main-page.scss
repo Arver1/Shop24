@@ -1,8 +1,57 @@
 .main-page {
   margin-bottom: 100px;
   &__wrapper {
+    background-color: #f8f8f8;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 76px;
+    position: relative;
+  }
+  &__items {
     max-width: 1170px;
     margin: 0 auto;
-    padding-top: 36px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+  &__item {
+    @include font(16px, 400);
+    padding: 18px 0;
+    cursor: pointer;
+  }
+  &__item + &__item {
+    margin-left: 20px;
+  }
+  &__item:hover,
+  &__item:active {
+    box-shadow: inset 0 -3px 0 0 #ff6c00;
+  }
+  &__item:hover &__sub-items,
+  &__item:active &__sub-items {
+    display: flex;
+  }
+  &__sub-wrapper {
+    width: 100%;
+    bottom: -37px;
+    left: 0;
+    position: absolute;
+    border-bottom: 1px solid #e4e4e4;
+  }
+  &__sub-items {
+    display: none;
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+  &__sub-item {
+    @include font(14px, 400);
+    padding: 10px 0;
+  }
+  &__sub-item + &__sub-item {
+    margin-left: 34px;
+  }
+  &__sub-item:hover,
+  &__sub-item:active {
+    box-shadow: inset 0 -3px 0 0 #ff6c00;
   }
 }
