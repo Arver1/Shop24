@@ -1,6 +1,6 @@
 .cart {
   max-width: 1170px;
-  margin: 0 auto;
+  margin: 0 auto 98px;
   padding-top: 25px;
   &__wrapper {
     margin-left: auto;
@@ -140,25 +140,65 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: url(/src/img/icon_cart.png) no-repeat;
+    background: url(../img/icon_cart.png) no-repeat;
   }
   &__promo {
     border-top: 2px solid #d9d9d9;
     padding-top: 28px;
+    @include flex();
+  }
+  &__promo-question {
+    @include font(16px, 400);
+    margin-bottom: 12px;
+  }
+  &__promo-field {
+    width: 277px;
+    padding: 14px;
+    border: 1px solid #dadada;
+    outline: none;
+    @include font(14px, 400);
+    margin-right: 20px;
+  }
+  &__promo-field::-webkit-input-placeholder {
+    @include font(14px, 400, normal, #d0d0d0);
+  }
+  &__promo-field::-moz-placeholder {
+    @include font(14px, 400, normal, #d0d0d0);
+  }
+  &__promo-field:-ms-input-placeholder {
+    @include font(14px, 400, normal, #d0d0d0);
+  }
+  &__promo-field:-moz-placeholder {
+    @include font(14px, 400, normal, #d0d0d0);
+  }
+  &__total-wrapper {
+    @include flex();
+    flex-direction: column;
+    text-align: right;
+  }
+  &__total-items {
+    @include flex();
+    flex-direction: column;
+    width: 380px;
   }
   &__total-item {
+    @include flex();
     @include font(16px, 400);
+    margin-bottom: 7px;
+  }
+  &__total-item--last {
+    margin-bottom: 30px;
   }
   &__total-item--color {
     color: #ff6c00;
   }
   &__empty-enter {
     opacity: 0;
-    transform: translateX(-1000px);
+    transform: translateX(-1000px) translateZ(0);
   }
   &__empty-enter-active {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0px) translateZ(0);
     transition: all 1000ms ease-in;
   }
   &__empty-exit {
@@ -166,20 +206,20 @@
   }
   &__empty-exit-active {
     opacity: 0;
-    transition: opacity 5000ms ease-in;
+    transition: opacity 1000ms ease-in;
   }
-}
-.fade-enter {
-  opacity: 0;
-}
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 700ms ease-in;
-}
-.fade-exit {
-  opacity: 1;
-}
-.fade-exit-active {
-  opacity: 0;
-  transition: opacity 700ms ease-in;
+  &__hide-enter {
+    opacity: 0;
+  }
+  &__hide-enter-active {
+    opacity: 1;
+    transition: opacity 700ms ease-in;
+  }
+  &__hide-exit {
+    opacity: 1;
+  }
+  &__hide-exit-active {
+    opacity: 0;
+    transition: opacity 700ms ease-in;
+  }
 }

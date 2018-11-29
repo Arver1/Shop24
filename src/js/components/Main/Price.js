@@ -52,11 +52,17 @@ class Price extends PureComponent {
     });
   };
 
+  checkValueEnter = e => {
+    if(e.keyCode === 13){
+      this.checkValue(e)
+    }
+  };
+
   getPromo = promo => {
     if(!promo) return;
     return (
       <li className="cart__total-item cart__total-item--color"><span>Промокод</span>
-        <span>{this.getPrice(promo)} руб.</span>
+        <span>-{this.getPrice(promo)} руб.</span>
       </li>
     )
   };
@@ -70,25 +76,28 @@ class Price extends PureComponent {
     const totalWithPromo = total - this.promo < 0 ? 0 : total - this.promo;
     return (
         <div className="cart__promo">
-          <div className="cart__wrapper-promo-field">
+          <div>
             <p className="cart__promo-question">Есть промокод?</p>
             <input type="text" className="cart__promo-field"
                    value={ this.state.value }
                    onChange={ this.changeValue }
+                   onKeyDown={ this.checkValueEnter }
                    placeholder="Введите промокод"
             />
             <button className="btn btn--promo" onClick={this.checkValue}>Применить</button>
           </div>
-          <ul className="cart__total-items">
-            <li className="cart__total-item"><span>Сумма заказа:</span>
-              <span>{this.getPrice(total)} руб.</span>
-            </li>
-            {this.getPromo(this.promo)}
-            <li className="cart__total-item"><span>Всего</span>
-              <span>{this.getPrice(totalWithPromo)} руб.</span>
-            </li>
-          </ul>
-          <button>Оформить заказ</button>
+          <div className="cart__total-wrapper">
+            <ul className="cart__total-items">
+              <li className="cart__total-item"><span>Сумма заказа:</span>
+                <span>{this.getPrice(total)} руб.</span>
+              </li>
+              {this.getPromo(this.promo)}
+              <li className="cart__total-item cart__total-item--last"><span>Всего:</span>
+                <span>{this.getPrice(totalWithPromo)} руб.</span>
+              </li>
+            </ul>
+            <a className="btn btn--order">Оформить заказ</a>
+          </div>
         </div>
       )
   }

@@ -29,7 +29,7 @@ class Cart extends PureComponent {
           <CSSTransition
             in={ this.state.active }
             timeout={ 2000 }
-            classNames = "cart__empty"
+            classNames="cart__empty"
           >
             <li className="cart__msg-wrapper">
               <p className="cart__msg">К сожалению Ваша корзина пуста...:(</p>
@@ -39,7 +39,7 @@ class Cart extends PureComponent {
     }
     return Object.entries(goodsId).map(id =>
           <CSSTransition key={ id[0] } timeout={ 700 }
-            classNames = "fade">
+            classNames="cart__hide">
             <CartItem goodId={ id[0] } amount={ id[1] }/>
           </CSSTransition>
     );
@@ -63,7 +63,7 @@ class Cart extends PureComponent {
       <section className="cart">
         <h2 className="cart__title"><span>Ваша корзина</span></h2>
         <ul className="cart__items">
-          <CSSTransition in={!this.state.active}  unmountOnExit timeout={ 700 }  classNames = "fade">
+          <CSSTransition in={!this.state.active}  unmountOnExit timeout={ 500 }  classNames="cart__hide">
             <CartCaption />
           </CSSTransition>
           <TransitionGroup>

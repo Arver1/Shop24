@@ -96,14 +96,14 @@ gulp.task('css', () =>
 gulp.task('mincss', () =>
   gulp.src('src/css/style.css', {since: gulp.lastRun('css')})
     .pipe(cssnano())
-    .pipe(rename({suffix: '.min'}))
+    // .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('build/src/css'))
 );
 
 gulp.task('webpack', () =>
   gulp.src('./src/js/index.js')
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest('./src'))
+    .pipe(gulp.dest('./src/js'))
 );
 
 gulp.task('fonts', function() {
@@ -112,7 +112,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('js', () =>
-  gulp.src('src/main.js', {since: gulp.lastRun('js')})
+  gulp.src('src/js/main.js', {since: gulp.lastRun('js')})
     .pipe(gulpNewer('build/src/js'))
     .pipe(gulp.dest('build/src/js'))
 );

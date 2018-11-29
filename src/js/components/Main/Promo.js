@@ -7,7 +7,7 @@ function Promo(){
       <ul className="promo__items">
         <li className="promo__item">
           <a href="#item_promo1">
-            <img src="/src/img/promo_1@1x.jpg"/>
+            <img src="src/img/promo_1@1x.jpg"/>
             <p className="promo__description">
               Солнечные очки зеленого цвета в
               стиле ретро
@@ -17,7 +17,7 @@ function Promo(){
         </li>
         <li className="promo__item">
           <a href="#item_promo2">
-            <img src="/src/img/promo_2@1x.jpg"/>
+            <img src="src/img/promo_2@1x.jpg"/>
             <p className="promo__description">
               Шляпа
             </p>
@@ -26,7 +26,7 @@ function Promo(){
         </li>
         <li className="promo__item">
           <a href="#item_promo3">
-            <img src="/src/img/promo_3@1x.jpg"/>
+            <img src="src/img/promo_3@1x.jpg"/>
             <p className="promo__description">
               Платье-миди с расклешенной
               юбкой
@@ -36,7 +36,7 @@ function Promo(){
           </li>
         <li className="promo__item">
           <a href="#item_promo4">
-            <img src="/src/img/promo_4@1x.jpg"/>
+            <img src="src/img/promo_4@1x.jpg"/>
             <p className="promo__description">
               Платье-миди с расклешенной
               юбкой

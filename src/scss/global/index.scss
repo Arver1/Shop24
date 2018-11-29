@@ -38,11 +38,3 @@ body {
   @include flex();
   flex-direction: column;
 }
-@keyframes visible {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
